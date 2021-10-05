@@ -81,5 +81,27 @@ CREATE TABLE Rooms(
     -- an associated room at the same time - 
     -- Guaranteed to have data integrity.
 
-    FOREIGN KEY (owner_id) REFERENCES Users (id)
+    FOREIGN KEY (owner_id) REFERENCES Users(id)
 );
+
+--@block
+INSERT INTO Rooms (owner_id,street)
+VALUES 
+    (1,'san diego sailboat'),
+    (1,'nantucket cottage'),
+    (1, 'Prague castle');
+
+--@block
+DROP TABLE Rooms;
+
+--@block
+SELECT * FROM Users
+-- Rooms where to owner ID equals the user ID
+INNER JOIN Rooms
+ON rooms.owner_id = users.id;
+
+--@block
+-- All the users whether they have a room or not
+SELECT * FROM Users
+LEFT JOIN Rooms
+ON rooms.owner_id = users.id;
